@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "start": "deno run -A --watch=static/,routes/,islands/,components/ --no-lock dev.ts"
+  },
+  "importMap": "./import_map.json",
+  "fmt": {
+    "exclude": ["README.md", "LICENSE", "pieces/"]
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}
