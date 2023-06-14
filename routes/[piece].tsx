@@ -6,18 +6,24 @@ import { Header } from "../components/Header.tsx";
 import { SITE_NAME } from "../utils/constant.ts";
 
 type HandlerProps = {
+  content: string;
   piece: string;
 };
 
 export const handler: Handlers<HandlerProps> = {
-  GET(_, ctx) {
+  async GET(_, ctx) {
     const { piece } = ctx.params;
-    return ctx.render({ piece });
+    try {
+      const content = await Deno.readTextFile(`./pieces/${piece}.md`);
+      return ctx.render({ content, piece });
+    } catch (error) {
+      return ctx.renderNotFound();
+    }
   },
 };
 
 export default function PiecePage({ data, url }: PageProps<HandlerProps>) {
-  const {piece} = data
+  const {piece, content} = data
   return (
     <Background>
       <Head>
@@ -37,7 +43,7 @@ export default function PiecePage({ data, url }: PageProps<HandlerProps>) {
           <h2 class="text-2xl font-bold dark:text-white">{piece}</h2>
           <div
             class="mt-10 dark:text-white"
-            dangerouslySetInnerHTML={{ __html: "本文" }}
+            dangerouslySetInnerHTML={{ __html: content }}
           />
         </section>
       </main>
