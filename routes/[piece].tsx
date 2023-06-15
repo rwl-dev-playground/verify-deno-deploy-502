@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import {getMarkdownData} from '../core/getData.ts';
+import { getMarkdownData } from "../core/getData.ts";
 import { Background } from "../components/Background.tsx";
 import { Footer } from "../components/Footer.tsx";
 import { Header } from "../components/Header.tsx";
@@ -15,7 +15,7 @@ export const handler: Handlers<HandlerProps> = {
   async GET(_, ctx) {
     const { piece } = ctx.params;
     try {
-      const {content} = await getMarkdownData(piece);
+      const { content } = await getMarkdownData(piece);
       return ctx.render({ content, piece });
     } catch (error) {
       return ctx.renderNotFound();
@@ -24,7 +24,7 @@ export const handler: Handlers<HandlerProps> = {
 };
 
 export default function PiecePage({ data, url }: PageProps<HandlerProps>) {
-  const {piece, content} = data
+  const { piece, content } = data;
   return (
     <Background>
       <Head>

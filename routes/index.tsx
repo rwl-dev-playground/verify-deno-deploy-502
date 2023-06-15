@@ -7,7 +7,6 @@ import { Footer } from "../components/Footer.tsx";
 import { SITE_NAME } from "../utils/constant.ts";
 
 export default function Home({ url }: PageProps) {
-
   return (
     <Background>
       <Head>
@@ -35,13 +34,13 @@ export default function Home({ url }: PageProps) {
         <section class="mt-10">
           <h2 class="text-2xl font-bold dark:text-white">オリジナル作品</h2>
           <div class="mt-5 grid grid-cols-1 gap-4 items-start">
-          <p>表示できる作品がありません</p>
+            <p>表示できる作品がありません</p>
           </div>
         </section>
         <section class="mt-10">
           <h2 class="text-2xl font-bold dark:text-white">二次創作作品</h2>
           <div class="mt-5 grid grid-cols-1 gap-4 items-start">
-          <p>表示できる作品がありません</p>
+            <p>表示できる作品がありません</p>
           </div>
         </section>
       </main>
