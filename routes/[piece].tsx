@@ -1,5 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
+import {getMarkdownData} from '../core/getData.ts';
 import { Background } from "../components/Background.tsx";
 import { Footer } from "../components/Footer.tsx";
 import { Header } from "../components/Header.tsx";
@@ -14,7 +15,7 @@ export const handler: Handlers<HandlerProps> = {
   async GET(_, ctx) {
     const { piece } = ctx.params;
     try {
-      const content = await Deno.readTextFile(`./pieces/${piece}.md`);
+      const {content} = await getMarkdownData(piece);
       return ctx.render({ content, piece });
     } catch (error) {
       return ctx.renderNotFound();
